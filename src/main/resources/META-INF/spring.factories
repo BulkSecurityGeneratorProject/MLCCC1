@@ -1,1 +1,1 @@
-org.springframework.context.ApplicationListener=org.mlccc.cm.infrastructure.MlcccApplicationListener
+#org.springframework.context.ApplicationListener=org.mlccc.cm.infrastructure.MlcccApplicationListener

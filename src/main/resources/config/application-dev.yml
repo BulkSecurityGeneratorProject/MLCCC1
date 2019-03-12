@@ -28,7 +28,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/mlccc
         username: postgres
-        password: rPohI6Bgo7I79nLOsuYviA==
+        password: sally28
         #type: ${datasource.type}
         #url: ${datasource.url}
         #username: ${datasource.username}
@@ -47,8 +47,7 @@ spring:
         host: smtp.gmail.com
         port: 587
         username: mlcccteam@gmail.com
-        password: g3om2NgKFD8cQzTSTjgs/g==
-        #password: mlccc@2651
+        password: mlccc@2651
         protocol: smtp
         properties:
             mail:
