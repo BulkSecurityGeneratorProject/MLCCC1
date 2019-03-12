@@ -58,30 +58,11 @@
                     </a>
                 </li>
 
-                <li ng-switch-when="true" uib-dropdown class="dropdown pointer" ng-class="{active: vm.$state.includes('teacher','my-teacher')}">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="teacher-entity-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="hidden-sm">
-                                Teachers
-                            </span>
-                            <b class="caret"></b>
-                        </span>
+                <li ng-switch-when="true" ng-class="{active: vm.$state.includes('teacher')}">
+                    <a ui-sref="teacher" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-sm">Teachers</span>
                     </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active"  has-authority="ROLE_USER">
-                            <a ui-sref="teacher" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                <span>All Teachers</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch="vm.showMyTeachers">
-                            <a ui-sref="my-teacher" ng-click="vm.collapseNavbar()" ng-switch-when="true">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                <span>My Teachers</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li ng-switch-when="true" uib-dropdown class="dropdown pointer"

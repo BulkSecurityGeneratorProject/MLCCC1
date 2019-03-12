@@ -106,9 +106,9 @@ public class InvoiceResource {
             }
         }
 
-        List<Invoice> invoices = new ArrayList<>();
+        List<Invoice> invoices;
         if(allInvoices) {
-            invoices = invoiceService.findAll();
+            invoices = invoiceService.findAllInvoices();
         } else {
             invoices = invoiceService.findUnpaidByUserId(loginUser.getId());
         }

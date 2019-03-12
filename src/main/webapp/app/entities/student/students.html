@@ -48,6 +48,7 @@
                                 <tr ng-repeat="registration in student.registrations track by registration.id">
                                     <td><a ui-sref="registration-detail({id:registration.id})">{{registration.id}}</a></td>
                                     <td><a ui-sref="mlc-class-detail({id:registration.mlcClass.id})">{{registration.mlcClass.className}}</a></td>
+                                    <td><a ui-sref="teacher-detail({id:registration.mlcClass.teacher.id})">Teacher: {{registration.mlcClass.teacher.firstName}} {{registration.mlcClass.teacher.lastName}}</a></td>
                                     <td>{{registration.status}}</td>
                                     <td>Tuition: {{registration.mlcClass.tuition}}</td>
                                     <td>

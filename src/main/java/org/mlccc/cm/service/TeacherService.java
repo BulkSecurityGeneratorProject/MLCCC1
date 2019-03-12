@@ -45,4 +45,6 @@ public interface TeacherService {
     void delete(Long id);
 
     Page<TeacherDTO> findAllWithSearchTerm(Pageable pageable, String searchTerm);
+
+    Teacher getTeacherWithClasses(Long id);
 }

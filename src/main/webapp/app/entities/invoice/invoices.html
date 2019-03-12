@@ -1,6 +1,7 @@
 <div>
     <h2>Invoices</h2>
     <jhi-alert></jhi-alert>
+    <!--
     <div class="container-fluid" has-authority="ROLE_ADMIN">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
@@ -12,12 +13,13 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div>-->
     <br/>
     <div ng-repeat="invoice in vm.invoices track by invoice.id">
         <div>
             <table class="jh-table table table-striped">
                 <thead>
+                    <th has-authority="ROLE_ADMIN"><span>Bill to User</span></th>
                     <th><span>Description</span></th>
                     <th><span>Status</span></th>
                     <th><span>Invoice Date</span></th>
@@ -29,6 +31,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td has-authority="ROLE_ADMIN"><a ui-sref="user-management-detail({login:invoice.billToUser.login})">{{invoice.billToUser.firstName}} {{invoice.billToUser.lastName}}</a></td>
                         <td><a ui-sref="invoice-detail({id:invoice.id})">{{invoice.description}}</a></td>
                         <td>{{invoice.status}}</td>
                         <td>{{invoice.invoiceDate | date:'mediumDate'}}</td>

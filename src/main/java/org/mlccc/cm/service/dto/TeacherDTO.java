@@ -2,6 +2,7 @@ package org.mlccc.cm.service.dto;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.mlccc.cm.domain.MlcClass;
 import org.mlccc.cm.domain.Teacher;
 import org.mlccc.cm.domain.User;
 
@@ -10,7 +11,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class TeacherDTO{
     private Long id;
@@ -31,6 +34,8 @@ public class TeacherDTO{
 
     private String classes;
 
+    private Set<MlcClassDTO> mlcClasses;
+
     public TeacherDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -38,6 +43,16 @@ public class TeacherDTO{
     public TeacherDTO(Teacher teacher){
         this(teacher.getId(), teacher.getFirstName(), teacher.getLastName(), teacher.getPayRate(),
                 teacher.getHireDate(), teacher.getAccount());
+        if(teacher.getMlcClasses() != null){
+            Set<MlcClassDTO> classes = new HashSet<>();
+            teacher.getMlcClasses().forEach(mlcClass->{
+                MlcClassDTO classDTO = new MlcClassDTO();
+                classDTO.setClassName(mlcClass.getClassName());
+                classDTO.setId(mlcClass.getId());
+                classes.add(classDTO);
+            });
+            this.setMlcClasses(classes);
+        }
     }
     
     public TeacherDTO(Long id, String firstName, String lastName,
@@ -113,6 +128,14 @@ public class TeacherDTO{
 
     public void setClasses(String classes) {
         this.classes = classes;
+    }
+
+    public Set<MlcClassDTO> getMlcClasses() {
+        return mlcClasses;
+    }
+
+    public void setMlcClasses(Set<MlcClassDTO> mlcClasses) {
+        this.mlcClasses = mlcClasses;
     }
 
     @Override

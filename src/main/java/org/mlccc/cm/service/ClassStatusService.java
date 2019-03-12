@@ -31,6 +31,7 @@ public interface ClassStatusService {
      */
     ClassStatus findOne(Long id);
 
+    ClassStatus findByName(String status);
     /**
      *  Delete the "id" classStatus.
      *

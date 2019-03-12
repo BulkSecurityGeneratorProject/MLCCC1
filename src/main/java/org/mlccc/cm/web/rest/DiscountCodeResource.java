@@ -9,6 +9,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,6 +45,7 @@ public class DiscountCodeResource {
      */
     @PostMapping("/discount-codes")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DiscountCode> createDiscountCode(@Valid @RequestBody DiscountCode discountCode) throws URISyntaxException {
         log.debug("REST request to save DiscountCode : {}", discountCode);
         if (discountCode.getId() != null) {
@@ -66,6 +68,7 @@ public class DiscountCodeResource {
      */
     @PutMapping("/discount-codes")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DiscountCode> updateDiscountCode(@Valid @RequestBody DiscountCode discountCode) throws URISyntaxException {
         log.debug("REST request to update DiscountCode : {}", discountCode);
         if (discountCode.getId() == null) {
@@ -111,6 +114,7 @@ public class DiscountCodeResource {
      */
     @DeleteMapping("/discount-codes/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteDiscountCode(@PathVariable Long id) {
         log.debug("REST request to delete DiscountCode : {}", id);
         discountCodeRepository.delete(id);

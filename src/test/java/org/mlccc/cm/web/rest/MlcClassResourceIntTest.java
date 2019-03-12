@@ -5,6 +5,7 @@ import org.mlccc.cm.MlcccApp;
 import org.mlccc.cm.domain.MlcClass;
 import org.mlccc.cm.repository.MlcClassRepository;
 import org.mlccc.cm.service.MlcClassService;
+import org.mlccc.cm.service.RegistrationService;
 import org.mlccc.cm.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -81,10 +82,12 @@ public class MlcClassResourceIntTest {
 
     private MlcClass mlcClass;
 
+    private RegistrationService registrationService;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        MlcClassResource mlcClassResource = new MlcClassResource(mlcClassService);
+        MlcClassResource mlcClassResource = new MlcClassResource(mlcClassService, registrationService);
         this.restMlcClassMockMvc = MockMvcBuilders.standaloneSetup(mlcClassResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

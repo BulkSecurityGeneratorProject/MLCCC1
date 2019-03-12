@@ -10,7 +10,7 @@
                         Register New Class
                     </span>
                 </button>
-                <button class="btn btn-primary" ui-sref="invoice" >
+                <button class="btn btn-info" ui-sref="invoice" >
                     <span class="glyphicon glyphicon-eye-open"></span>
                     <span >
                         View Invoice
@@ -26,6 +26,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="student.id"><span>Student</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="mlcClass.id"><span>Class</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="teacher.id"><span>Teacher</span> <span class="glyphicon"></span></th>
                     <th jh-sort-by="status.id"><span>Status</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th><span>Registration Fee</span></th>
                     <th><span>Tuition</span></th>
@@ -39,6 +40,9 @@
                     </td>
                     <td>
                         <a ui-sref="mlc-class-detail({id:registration.mlcClass.id})">{{registration.mlcClass.className}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="teacher-detail({id:registration.mlcClass.teacher.id})">{{registration.mlcClass.teacher.firstName}} {{registration.mlcClass.teacher.lastName}}</a>
                     </td>
                     <td>
                         {{registration.status}}

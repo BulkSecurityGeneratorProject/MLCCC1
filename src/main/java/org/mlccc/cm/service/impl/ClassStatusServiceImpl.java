@@ -62,6 +62,12 @@ public class ClassStatusServiceImpl implements ClassStatusService{
         return classStatusRepository.findOne(id);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public ClassStatus findByName(String status) {
+        log.debug("Request to findByName ClassStatus : {}", status);
+        return classStatusRepository.findByName(status);
+    }
     /**
      *  Delete the  classStatus by id.
      *

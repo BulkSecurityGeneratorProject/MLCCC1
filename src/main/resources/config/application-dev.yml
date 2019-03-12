@@ -28,7 +28,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/mlccc
         username: postgres
-        password: Scala350!
+        password: rPohI6Bgo7I79nLOsuYviA==
         #type: ${datasource.type}
         #url: ${datasource.url}
         #username: ${datasource.username}
@@ -47,7 +47,8 @@ spring:
         host: smtp.gmail.com
         port: 587
         username: mlcccteam@gmail.com
-        password: mlccc@2651
+        password: g3om2NgKFD8cQzTSTjgs/g==
+        #password: mlccc@2651
         protocol: smtp
         properties:
             mail:
@@ -147,4 +148,6 @@ application:
     mediaUploadDir: /Temp/MLCCC/upload/media/
 
 uploadedFileDir: /Temp/MLCCC/upload/
+keyFilePath: /Temp/security/secret.key
+ivFilePath: /Temp/security/ivParameter.txt
 

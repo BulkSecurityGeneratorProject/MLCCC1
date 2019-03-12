@@ -12,14 +12,6 @@
         <dd>
             <span>{{vm.teacher.lastName}}</span>
         </dd>
-        <dt><span>Hire Date</span></dt>
-        <dd>
-            <span>{{vm.teacher.hireDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span>Pay Rate</span></dt>
-        <dd>
-            <span>{{vm.teacher.payRate}}</span>
-        </dd>
         <dt><span>User Account</span></dt>
         <dd>
             <a ui-sref="user-management-detail({id:vm.teacher.account.id})">{{vm.teacher.account.firstName}} {{vm.teacher.account.lastName}} {{vm.teacher.account.login}}</a>

@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,6 +43,7 @@ public class SchoolTermResource {
      */
     @PostMapping("/school-terms")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SchoolTerm> createSchoolTerm(@RequestBody SchoolTerm schoolTerm) throws URISyntaxException {
         log.debug("REST request to save SchoolTerm : {}", schoolTerm);
         if (schoolTerm.getId() != null) {
@@ -64,6 +66,7 @@ public class SchoolTermResource {
      */
     @PutMapping("/school-terms")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SchoolTerm> updateSchoolTerm(@RequestBody SchoolTerm schoolTerm) throws URISyntaxException {
         log.debug("REST request to update SchoolTerm : {}", schoolTerm);
         if (schoolTerm.getId() == null) {
@@ -109,6 +112,7 @@ public class SchoolTermResource {
      */
     @DeleteMapping("/school-terms/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteSchoolTerm(@PathVariable Long id) {
         log.debug("REST request to delete SchoolTerm : {}", id);
         schoolTermService.delete(id);

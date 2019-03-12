@@ -12,6 +12,8 @@ public class ApplicationProperties {
     private String newsletterUploadDir;
     private String mediaUploadDir;
     private String uploadedFileDir;
+    private String keyFilePath;
+    private String ivFilePath;
 
 
     public String getNewsletterUploadDir() {
@@ -36,5 +38,21 @@ public class ApplicationProperties {
 
     public void setMediaUploadDir(String mediaUploadDir) {
         this.mediaUploadDir = mediaUploadDir;
+    }
+
+    public String getKeyFilePath() {
+        return keyFilePath;
+    }
+
+    public void setKeyFilePath(String keyFilePath) {
+        this.keyFilePath = keyFilePath;
+    }
+
+    public String getIvFilePath() {
+        return ivFilePath;
+    }
+
+    public void setIvFilePath(String ivFilePath) {
+        this.ivFilePath = ivFilePath;
     }
 }

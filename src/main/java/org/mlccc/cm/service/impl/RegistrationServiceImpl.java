@@ -108,5 +108,11 @@ public class RegistrationServiceImpl implements RegistrationService{
         return registrationRepository.findAllWithTeacherUserId(pageable, userId);
     }
 
+    @Override
+    public Long findNumberOfRegistrationWithClassId(Long classId){
+        log.debug("Request to findNumberOfRegistrationWithClassId: {}", classId);
+        return registrationRepository.findNumberOfRegistrationWithClassId(classId);
+    }
+
 
 }

@@ -74,4 +74,12 @@ public class InvoiceService {
         return invoiceRepository.findUnpaidByUserId(userId);
     }
 
+
+    @Transactional(readOnly = true)
+    public List<Invoice> findAllInvoices() {
+        log.debug("Request to get unpaid all invoices.");
+        return invoiceRepository.findAllInvoices();
+    }
+
+
 }

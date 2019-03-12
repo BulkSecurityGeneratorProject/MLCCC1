@@ -2,7 +2,9 @@ package org.mlccc.cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.mlccc.cm.domain.MlcClass;
+import org.mlccc.cm.domain.Registration;
 import org.mlccc.cm.service.MlcClassService;
+import org.mlccc.cm.service.RegistrationService;
 import org.mlccc.cm.web.rest.util.HeaderUtil;
 import org.mlccc.cm.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -14,11 +16,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +39,11 @@ public class MlcClassResource {
 
     private final MlcClassService mlcClassService;
 
-    public MlcClassResource(MlcClassService mlcClassService) {
+    private final RegistrationService registrationService;
+
+    public MlcClassResource(MlcClassService mlcClassService, RegistrationService registrationService) {
         this.mlcClassService = mlcClassService;
+        this.registrationService = registrationService;
     }
 
     /**
@@ -48,6 +55,7 @@ public class MlcClassResource {
      */
     @PostMapping("/mlc-classes")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<MlcClass> createMlcClass(@RequestBody MlcClass mlcClass) throws URISyntaxException {
         log.debug("REST request to save MlcClass : {}", mlcClass);
         if (mlcClass.getId() != null) {
@@ -70,11 +78,16 @@ public class MlcClassResource {
      */
     @PutMapping("/mlc-classes")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<MlcClass> updateMlcClass(@RequestBody MlcClass mlcClass) throws URISyntaxException {
         log.debug("REST request to update MlcClass : {}", mlcClass);
         if (mlcClass.getId() == null) {
             return createMlcClass(mlcClass);
         }
+
+        /*if(mlcClass.getRegistrations() != null && registrationService.findAllWithClassId(mlcClass.getId()) != null) {
+            mlcClass.setRegistrations(new HashSet<Registration>(registrationService.findAllWithClassId(mlcClass.getId())));
+        }*/
         MlcClass result = mlcClassService.save(mlcClass);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, mlcClass.getId().toString()))
@@ -119,6 +132,7 @@ public class MlcClassResource {
      */
     @DeleteMapping("/mlc-classes/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteMlcClass(@PathVariable Long id) {
         log.debug("REST request to delete MlcClass : {}", id);
         mlcClassService.delete(id);

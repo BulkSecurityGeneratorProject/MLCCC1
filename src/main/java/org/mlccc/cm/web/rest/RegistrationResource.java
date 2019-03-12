@@ -5,10 +5,7 @@ import io.swagger.models.auth.In;
 import org.mlccc.cm.config.Constants;
 import org.mlccc.cm.domain.*;
 import org.mlccc.cm.security.AuthoritiesConstants;
-import org.mlccc.cm.service.InvoiceService;
-import org.mlccc.cm.service.RegistrationService;
-import org.mlccc.cm.service.StudentService;
-import org.mlccc.cm.service.UserService;
+import org.mlccc.cm.service.*;
 import org.mlccc.cm.web.rest.util.HeaderUtil;
 import org.mlccc.cm.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -49,12 +46,18 @@ public class RegistrationResource {
 
     private final InvoiceService invoiceService;
 
+    private final MlcClassService classService;
+
+    private final ClassStatusService classStatusService;
+
     public RegistrationResource(RegistrationService registrationService, UserService userService, StudentService studentService,
-                                InvoiceService invoiceService) {
+                                InvoiceService invoiceService, MlcClassService classService, ClassStatusService classStatusService) {
         this.registrationService = registrationService;
         this.userService = userService;
         this.studentService = studentService;
         this.invoiceService = invoiceService;
+        this.classService = classService;
+        this.classStatusService = classStatusService;
     }
 
     /**
@@ -71,12 +74,26 @@ public class RegistrationResource {
         if (registration.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new registration cannot already have an ID")).body(null);
         }
+        if(registration.getMlcClass() == null || registration.getMlcClass().getId() == null){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idnotfound", "A registration must have a class ID")).body(null);
+        }
+
+        // check if the class is full
+        MlcClass mlcClass = classService.findOne(registration.getMlcClass().getId());
+        if(mlcClass.getStatus() != null &&
+                (mlcClass.getStatus().getStatus().equals(Constants.FULL_STATUS) || mlcClass.getStatus().getStatus().equals(Constants.CLOSED_STATUS))){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "notpossible", "The class is full")).body(null);
+        }
+
         List<Registration> existingRegistrations = registrationService.findAllWithStudentIdClassId(registration.getStudent().getId(),
             registration.getMlcClass().getId());
 
         if(!existingRegistrations.isEmpty()){
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "registrationExists", "The student already registered this class")).body(null);
         }
+
+        Long numOfRegistrations = registrationService.findNumberOfRegistrationWithClassId(mlcClass.getId());
+
         Student student = studentService.findByIdAndFetchEager(registration.getStudent().getId());
         Set<User> associatedAccounts =student.getAssociatedAccounts();
         User invoicedUser = associatedAccounts.iterator().next();
@@ -97,7 +114,19 @@ public class RegistrationResource {
         registration.setCreateDate(LocalDate.now());
         registration.setStatus(Constants.PENDING_STATUS);
         Registration result = registrationService.save(registration);
-        invoiceService.save(invoice);
+        if(result != null){
+            if(mlcClass.getSize() != null) {
+                if ((numOfRegistrations.doubleValue()+1)/mlcClass.getSize().doubleValue() >= 0.8){
+                    mlcClass.setStatus(classStatusService.findByName(Constants.ALMOST_FULL_STATUS));
+                    classService.save(mlcClass);
+                } else if(numOfRegistrations.doubleValue()+1 >= mlcClass.getSize().doubleValue()){
+                    mlcClass.setStatus(classStatusService.findByName(Constants.FULL_STATUS));
+                    classService.save(mlcClass);
+                }
+            }
+            invoiceService.save(invoice);
+        }
+
         return ResponseEntity.created(new URI("/api/registrations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

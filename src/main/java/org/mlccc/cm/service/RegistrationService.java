@@ -45,6 +45,8 @@ public interface RegistrationService {
     Page<Registration> findAllWithAssociatedUserId(Pageable pageable, Long userId);
 
     Page<Registration> findAllWithTeacherUserId(Pageable pageable, Long userId);
+
+    Long findNumberOfRegistrationWithClassId(Long classId);
     /**
      *  Delete the "id" registration.
      *

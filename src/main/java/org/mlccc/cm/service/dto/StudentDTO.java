@@ -1,18 +1,10 @@
 package org.mlccc.cm.service.dto;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.mlccc.cm.config.Constants;
-import org.mlccc.cm.domain.Authority;
 import org.mlccc.cm.domain.Student;
 import org.mlccc.cm.domain.User;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * A DTO representing a user, with his authorities.

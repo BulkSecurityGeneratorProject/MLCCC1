@@ -1,12 +1,15 @@
 package org.mlccc.cm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Teacher.
@@ -38,6 +41,11 @@ public class Teacher implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private User account;
+
+    @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MlcClass> mlcClasses = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -105,6 +113,14 @@ public class Teacher implements Serializable {
 
     public void setAccount(User account) {
         this.account = account;
+    }
+
+    public Set<MlcClass> getMlcClasses() {
+        return mlcClasses;
+    }
+
+    public void setMlcClasses(Set<MlcClass> mlcClasses) {
+        this.mlcClasses = mlcClasses;
     }
 
     @Override

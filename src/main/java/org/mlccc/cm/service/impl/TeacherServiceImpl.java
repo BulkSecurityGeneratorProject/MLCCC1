@@ -82,4 +82,11 @@ public class TeacherServiceImpl implements TeacherService{
         log.debug("Request to get all Teachers with searchTerm: {}", searchTerm);
         return teacherRepository.findAllWithSearchTerm(pageable, searchTerm.toLowerCase()+"%").map(TeacherDTO::new);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Teacher getTeacherWithClasses(Long id) {
+        log.debug("Request to get teacher with classes: {}", id);
+        return teacherRepository.getTeacherWithClasses(id);
+    }
 }

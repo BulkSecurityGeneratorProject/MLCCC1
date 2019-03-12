@@ -5,7 +5,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A MlcClass.
@@ -60,6 +62,13 @@ public class MlcClass implements Serializable {
 
     @ManyToOne
     private MlcClassCategory mlcClassCategory;
+
+    /*
+    @OneToMany(
+            mappedBy = "mlcClass",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Registration> registrations = new HashSet<>();*/
 
     public Long getId() {
         return id;
@@ -232,6 +241,14 @@ public class MlcClass implements Serializable {
     public void setMlcClassCategory(MlcClassCategory mlcClassCategory) {
         this.mlcClassCategory = mlcClassCategory;
     }
+
+   /* public Set<Registration> getRegistrations() {
+        return registrations;
+    }
+
+    public void setRegistrations(Set<Registration> registrations) {
+        this.registrations = registrations;
+    }*/
 
     @Override
     public boolean equals(Object o) {

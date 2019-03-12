@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,6 +43,7 @@ public class NewsLetterResource {
      */
     @PostMapping("/news-letters")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<NewsLetter> createNewsLetter(@RequestBody NewsLetter newsLetter) throws URISyntaxException {
         log.debug("REST request to save NewsLetter : {}", newsLetter);
         if (newsLetter.getId() != null) {
@@ -64,6 +66,7 @@ public class NewsLetterResource {
      */
     @PutMapping("/news-letters")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<NewsLetter> updateNewsLetter(@RequestBody NewsLetter newsLetter) throws URISyntaxException {
         log.debug("REST request to update NewsLetter : {}", newsLetter);
         if (newsLetter.getId() == null) {
@@ -109,6 +112,7 @@ public class NewsLetterResource {
      */
     @DeleteMapping("/news-letters/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteNewsLetter(@PathVariable Long id) {
         log.debug("REST request to delete NewsLetter : {}", id);
         newsLetterService.delete(id);

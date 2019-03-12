@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,6 +43,7 @@ public class ClassTimeResource {
      */
     @PostMapping("/class-times")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<ClassTime> createClassTime(@RequestBody ClassTime classTime) throws URISyntaxException {
         log.debug("REST request to save ClassTime : {}", classTime);
         if (classTime.getId() != null) {
@@ -64,6 +66,7 @@ public class ClassTimeResource {
      */
     @PutMapping("/class-times")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<ClassTime> updateClassTime(@RequestBody ClassTime classTime) throws URISyntaxException {
         log.debug("REST request to update ClassTime : {}", classTime);
         if (classTime.getId() == null) {
@@ -109,6 +112,7 @@ public class ClassTimeResource {
      */
     @DeleteMapping("/class-times/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteClassTime(@PathVariable Long id) {
         log.debug("REST request to delete ClassTime : {}", id);
         classTimeService.delete(id);

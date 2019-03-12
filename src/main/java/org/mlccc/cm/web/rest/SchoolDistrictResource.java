@@ -9,6 +9,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -43,6 +44,7 @@ public class SchoolDistrictResource {
      */
     @PostMapping("/school-districts")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SchoolDistrict> createSchoolDistrict(@RequestBody SchoolDistrict schoolDistrict) throws URISyntaxException {
         log.debug("REST request to save SchoolDistrict : {}", schoolDistrict);
         if (schoolDistrict.getId() != null) {
@@ -65,6 +67,7 @@ public class SchoolDistrictResource {
      */
     @PutMapping("/school-districts")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SchoolDistrict> updateSchoolDistrict(@RequestBody SchoolDistrict schoolDistrict) throws URISyntaxException {
         log.debug("REST request to update SchoolDistrict : {}", schoolDistrict);
         if (schoolDistrict.getId() == null) {
@@ -110,6 +113,7 @@ public class SchoolDistrictResource {
      */
     @DeleteMapping("/school-districts/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteSchoolDistrict(@PathVariable Long id) {
         log.debug("REST request to delete SchoolDistrict : {}", id);
         schoolDistrictRepository.delete(id);

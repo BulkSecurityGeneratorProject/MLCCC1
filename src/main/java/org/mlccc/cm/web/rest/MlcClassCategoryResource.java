@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,6 +43,7 @@ public class MlcClassCategoryResource {
      */
     @PostMapping("/mlc-class-categories")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<MlcClassCategory> createMlcClassCategory(@RequestBody MlcClassCategory mlcClassCategory) throws URISyntaxException {
         log.debug("REST request to save MlcClassCategory : {}", mlcClassCategory);
         if (mlcClassCategory.getId() != null) {
@@ -64,6 +66,7 @@ public class MlcClassCategoryResource {
      */
     @PutMapping("/mlc-class-categories")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<MlcClassCategory> updateMlcClassCategory(@RequestBody MlcClassCategory mlcClassCategory) throws URISyntaxException {
         log.debug("REST request to update MlcClassCategory : {}", mlcClassCategory);
         if (mlcClassCategory.getId() == null) {
@@ -109,6 +112,7 @@ public class MlcClassCategoryResource {
      */
     @DeleteMapping("/mlc-class-categories/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteMlcClassCategory(@PathVariable Long id) {
         log.debug("REST request to delete MlcClassCategory : {}", id);
         mlcClassCategoryService.delete(id);

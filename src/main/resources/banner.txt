@@ -1,10 +1,10 @@
-
-  ${AnsiColor.GREEN}      ██╗${AnsiColor.RED} ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗
-  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗
-  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝
-  ${AnsiColor.GREEN}██╗   ██║${AnsiColor.RED} ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║
-  ${AnsiColor.GREEN}╚██████╔╝${AnsiColor.RED} ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗
-  ${AnsiColor.GREEN} ╚═════╝ ${AnsiColor.RED} ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝
-
-${AnsiColor.BRIGHT_BLUE}:: JHipster 🤓  :: Running Spring Boot ${spring-boot.version} ::
-:: https://jhipster.github.io ::${AnsiColor.DEFAULT}
+${AnsiColor.RED}
+ooo        ooooo ooooo          .oooooo.     .oooooo.     .oooooo.
+`88.       .888' `888'         d8P'  `Y8b   d8P'  `Y8b   d8P'  `Y8b
+ 888b     d'888   888         888          888          888
+ 8 Y88. .P  888   888         888          888          888
+ 8  `888'   888   888         888          888          888
+ 8    Y     888   888       o `88b    ooo  `88b    ooo  `88b    ooo
+o8o        o888o o888ooooood8  `Y8bood8P'   `Y8bood8P'   `Y8bood8P'
+${AnsiColor.BRIGHT_BLUE}:: MLCCC 🤓  :: Running Spring Boot ${spring-boot.version} ::
+:: https://github.com/sally28/MLCCC ::${AnsiColor.DEFAULT}

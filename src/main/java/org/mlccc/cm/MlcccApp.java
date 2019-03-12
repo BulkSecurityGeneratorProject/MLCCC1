@@ -65,6 +65,7 @@ public class MlcccApp {
         SpringApplication app = new SpringApplication(MlcccApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
+
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";

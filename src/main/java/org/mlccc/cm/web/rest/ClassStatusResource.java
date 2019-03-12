@@ -8,6 +8,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,6 +43,7 @@ public class ClassStatusResource {
      */
     @PostMapping("/class-statuses")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<ClassStatus> createClassStatus(@RequestBody ClassStatus classStatus) throws URISyntaxException {
         log.debug("REST request to save ClassStatus : {}", classStatus);
         if (classStatus.getId() != null) {
@@ -64,6 +66,7 @@ public class ClassStatusResource {
      */
     @PutMapping("/class-statuses")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<ClassStatus> updateClassStatus(@RequestBody ClassStatus classStatus) throws URISyntaxException {
         log.debug("REST request to update ClassStatus : {}", classStatus);
         if (classStatus.getId() == null) {
@@ -109,6 +112,7 @@ public class ClassStatusResource {
      */
     @DeleteMapping("/class-statuses/{id}")
     @Timed
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteClassStatus(@PathVariable Long id) {
         log.debug("REST request to delete ClassStatus : {}", id);
         classStatusService.delete(id);
