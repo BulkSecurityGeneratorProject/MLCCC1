@@ -3,7 +3,7 @@
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-4"  has-authority="ROLE_ADMIN" >
+            <div class="col-sm-3 col-sm-offset-1"  has-authority="ROLE_ADMIN" >
                 <button class="btn btn-primary" ui-sref="mlc-class.new">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
@@ -11,7 +11,7 @@
                     </span>
                 </button>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3 col-sm-offset-2">
                 <form name="searchForm" role="form" novalidate ng-submit="vm.searchClass()">
                     <div class="form-group has-feedback">
                         <input type="search" class="form-control" placeholder="Search Class by Name" name="searchTerm" id="searchTerm"
@@ -21,43 +21,46 @@
                 </form>
             </div>
         </div>
-        <div>
-            <div class="col-sm-2">
+        <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-2 col-sm-offset-1">
                 <form name="chlForm" role="form" novalidate ng-submit="vm.getCHLClasses()">
-                    <button class="btn btn-info btn-sm">
+                    <button class="btn btn-info btn-md">
                         <span >
                             CHL Classes
                         </span>
                     </button>
                 </form>
-            </div>
-            <div class="col-sm-2">
-                <form name="chlForm" role="form" novalidate ng-submit="vm.getCSLClasses()">
-                    <button class="btn btn-info btn-sm">
+               </div>
+                <div class="col-sm-2">
+                <form  name="chlForm" role="form" novalidate ng-submit="vm.getCSLClasses()">
+                    <button class="btn btn-info btn-md">
                         <span >
                             CSL Classes
                         </span>
                     </button>
                 </form>
-            </div>
-            <div class="col-sm-2">
-                <form name="chlForm" role="form" novalidate ng-submit="vm.getNonLangClasses()">
-                    <button class="btn btn-info btn-sm">
+                </div>
+
+                <div class="col-sm-2">
+                <form  name="chlForm" role="form" novalidate ng-submit="vm.getNonLangClasses()">
+                    <button class="btn btn-info btn-md">
                         <span >
                             Non Language Classes
                         </span>
                     </button>
                 </form>
-            </div>
-            <div class="col-sm-2">
-                <form name="chlForm" role="form" novalidate ng-submit="vm.getAllClasses()">
-                    <button class="btn btn-info btn-sm">
+               </div>
+
+                <div class="col-sm-2 col-sm-offset-1">
+                <form  name="chlForm" role="form" novalidate ng-submit="vm.getAllClasses()">
+                    <button class="btn btn-info btn-md">
                         <span >
                             All Classes
                         </span>
                     </button>
                 </form>
-            </div>
+                </div>
         </div>
     </div>
     <br/>
