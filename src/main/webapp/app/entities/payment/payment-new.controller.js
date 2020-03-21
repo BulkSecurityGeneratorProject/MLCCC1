@@ -56,17 +56,20 @@
 
         function getBrainTreeNonce() {
             var submitButton = document.querySelector('#submit-button');
-
             braintree.dropin.create({
                 authorization: vm.btToken,
                 container: '#dropin-container',
             }, function (createErr, instance) {
                instance.requestPaymentMethod(function (err, payload) {
+                   var btDropin = document.querySelector('.braintree-loaded');
+                   $(btDropin).removeClass('braintree-sheet--has-error');
                     // Submit payload.nonce to your server
                    submitButton.addEventListener('click', function () {
                        instance.requestPaymentMethod(function (err, payload) {
-                           vm.payment.referenceId = payload.nonce;
-                           save();
+                           if(payload){
+                               vm.payment.referenceId = payload.nonce;
+                               save();
+                           }
                        });
                    });
                 });

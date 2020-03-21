@@ -3,7 +3,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;*/
     background: url("../images/bodybg.jpg.png") repeat;
-    color: #b0a59f;
+    color: #b07331;
     font: 400 13px/17px "Droid Sans", sans-serif;
     -webkit-text-size-adjust: none;
 }
@@ -342,7 +342,7 @@ ui bootstrap tweaks
 
 .modal-body{
     background: url(../images/bodybg.jpg.png) repeat;
-    color: #b0a59f;
+    color: #b07331;
     font: 400 13px/17px "Droid Sans", sans-serif;
     -webkit-text-size-adjust: none;
 }

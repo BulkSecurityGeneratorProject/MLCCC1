@@ -54,7 +54,11 @@
         </div>
 
     </div>
-    <div id="dropin-container"></div>
+    <div ng-switch="vm.payment.type">
+        <div ng-switch-when="Credit Card">
+            <div id="dropin-container"></div>
+        </div>
+    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
