@@ -39,4 +39,6 @@ public interface PaymentService {
     void delete(Long id);
 
     List<Payment> findByUserId(Long userId);
+
+    Boolean processCCPayment(Payment payment);
 }

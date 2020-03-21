@@ -25,9 +25,8 @@
                     ng-model="vm.payment.type">
                 <option value="Cash">Cash</option>
                 <option value="Check">Check</option>
-                <!--
                 <option value="Credit Card">Credit Card</option>
-                <option value="Paypal">Paypal</option>
+                <!--<option value="Paypal">Paypal</option>
                 -->
             </select>
         </div>
@@ -36,6 +35,11 @@
             <input type="number" min="vm.payment.invoice.total" max="vm.payment.invoice.total" class="form-control" name="amount" id="field_amount"
                     ng-model="vm.payment.amount" readonly
                     />
+        </div>
+        <div class="form-group">
+            <label class="control-reference_id" for="field_reference_id">Reference Id</label>
+            <input type="text" class="form-control" name="reference_id" id="field_reference_id"
+                   ng-model="vm.payment.referenceId" readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_status">Status</label>

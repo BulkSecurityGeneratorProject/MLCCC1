@@ -26,13 +26,13 @@
         <div class="form-group">
             <label class="control-label" for="field_type">Payment Type</label>
             <select type="text" class="form-control" name="type" id="field_type"
-                    ng-model="vm.payment.type">
+                    ng-model="vm.payment.type" ng-change="vm.getPaymentMethod()">
                 <option value="Cash">Cash</option>
                 <option value="Check">Check</option>
-                <!--
                 <option value="Credit Card">Credit Card</option>
-                <option value="Paypal">Paypal</option>
-                -->
+                <!--
+               <option value="Paypal">Paypal</option>
+               -->
             </select>
         </div>
         <div class="form-group" ng-switch="vm.payment.type">
@@ -54,12 +54,14 @@
         </div>
 
     </div>
+    <div id="dropin-container"></div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        <button id="submit-button" type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Submit</span>
         </button>
     </div>
+
 </form>

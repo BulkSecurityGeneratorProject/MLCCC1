@@ -14,6 +14,10 @@ public class ApplicationProperties {
     private String uploadedFileDir;
     private String keyFilePath;
     private String ivFilePath;
+    private String btMerchantId;
+    private String btPublicKey;
+    private String btPrivateKey;
+    private String btEnvironment;
 
 
     public String getNewsletterUploadDir() {
@@ -54,5 +58,37 @@ public class ApplicationProperties {
 
     public void setIvFilePath(String ivFilePath) {
         this.ivFilePath = ivFilePath;
+    }
+
+    public String getBtMerchantId() {
+        return btMerchantId;
+    }
+
+    public void setBtMerchantId(String btMerchantId) {
+        this.btMerchantId = btMerchantId;
+    }
+
+    public String getBtPublicKey() {
+        return btPublicKey;
+    }
+
+    public void setBtPublicKey(String btPublicKey) {
+        this.btPublicKey = btPublicKey;
+    }
+
+    public String getBtPrivateKey() {
+        return btPrivateKey;
+    }
+
+    public void setBtPrivateKey(String btPrivateKey) {
+        this.btPrivateKey = btPrivateKey;
+    }
+
+    public String getBtEnvironment() {
+        return btEnvironment;
+    }
+
+    public void setBtEnvironment(String btEnvironment) {
+        this.btEnvironment = btEnvironment;
     }
 }

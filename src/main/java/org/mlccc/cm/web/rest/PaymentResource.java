@@ -1,5 +1,6 @@
 package org.mlccc.cm.web.rest;
 
+import com.braintreegateway.BraintreeGateway;
 import com.codahale.metrics.annotation.Timed;
 import org.mlccc.cm.config.Constants;
 import org.mlccc.cm.domain.*;
@@ -11,6 +12,7 @@ import org.mlccc.cm.service.UserService;
 import org.mlccc.cm.service.dto.InvoiceDTO;
 import org.mlccc.cm.service.dto.PaymentDTO;
 import org.mlccc.cm.service.dto.RegistrationDTO;
+import org.mlccc.cm.service.util.BraintreeGatewayFactory;
 import org.mlccc.cm.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -77,6 +79,13 @@ public class PaymentResource {
 
 
         Payment payment = paymentDto.toPayment();
+
+        // post credit card transaction
+        if(payment.getType().equals(Constants.PAYMENT_TYPE_CC)){
+            if(!paymentService.processCCPayment(payment)){
+                return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "CreditCardPayment", "Credit Card payment is not successful")).body(null);
+            }
+        }
 
         InvoiceDTO invoiceDto = paymentDto.getInvoiceDto();
         Invoice invoice = invoiceService.findOne(invoiceDto.getId());
@@ -180,5 +189,15 @@ public class PaymentResource {
         log.debug("REST request to delete Payment : {}", id);
         paymentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/payments/token")
+    @Timed
+    public ResponseEntity getClientToken() {
+        log.debug("REST request to get client token ");
+        BraintreeGateway gateway = BraintreeGatewayFactory.INSTANCE;
+        String clientToken = gateway.clientToken().generate();
+
+        return ResponseEntity.ok("{\"token\":\"" + clientToken + "\"}");
     }
 }

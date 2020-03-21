@@ -152,4 +152,8 @@ application:
     uploadedFileDir: /Temp/MLCCC/upload/
     keyFilePath: /Temp/security/secret.key
     ivFilePath: /Temp/security/ivParameter.txt
+    btEnvironment: sandbox
+    btMerchantId: 9qcqz6tjwdsqzyqd
+    btPublicKey: sgcp69qt56nnz2cc
+    btPrivateKey: 6a39421923bb6bde99fe5088fd429e31
 

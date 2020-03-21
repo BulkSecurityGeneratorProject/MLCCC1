@@ -5,6 +5,7 @@ import org.mlccc.cm.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
+import org.mlccc.cm.service.util.BraintreeGatewayFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
@@ -65,6 +68,13 @@ public class MlcccApp {
         SpringApplication app = new SpringApplication(MlcccApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
+
+        Map<String, String> btConfig = new HashMap<>();
+        btConfig.put("BT_ENVIRONMENT", env.getProperty("application.btEnvironment"));
+        btConfig.put("BT_MERCHANT_ID", env.getProperty("application.btMerchantId"));
+        btConfig.put("BT_PUBLIC_KEY", env.getProperty("application.btPublicKey"));
+        btConfig.put("BT_PRIVATE_KEY", env.getProperty("application.btPrivateKey"));
+        BraintreeGatewayFactory.fromConfigMapping(btConfig);
 
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {

@@ -1,0 +1,31 @@
+{
+  "name": "braintree-web-drop-in",
+  "authors": [
+    "braintree <code@getbraintree.com>"
+  ],
+  "description": "Braintree Drop-in for the web",
+  "main": "dropin.js",
+  "keywords": [
+    "braintree",
+    "payments"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/braintree/braintree-web-drop-in",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "1.22.1",
+  "_release": "1.22.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.22.1",
+    "commit": "f88a58103a42d6c6ff8f7a4ad50400896cac02c7"
+  },
+  "_source": "https://github.com/braintree/braintree-web-drop-in-bower.git",
+  "_target": "1.22.1",
+  "_originalSource": "braintree-web-drop-in"
+}
